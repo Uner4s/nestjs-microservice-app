@@ -1,5 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
-import { MailAppService } from './mail-app.service';
+import { Controller } from '@nestjs/common';
 import { EventPattern } from '@nestjs/microservices';
 
 interface Cat {
@@ -9,12 +8,7 @@ interface Cat {
 
 @Controller()
 export class MailAppController {
-  constructor(private readonly mailAppService: MailAppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.mailAppService.getHello();
-  }
+  constructor() {}
 
   @EventPattern('email_cat')
   handleUserCreated(data: Cat): { success: boolean } {
